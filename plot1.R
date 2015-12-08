@@ -24,12 +24,12 @@ plot1 <- function(mainData = NULL)
      # if data wasn't passed in, then call the loader function
      if (is.null(mainData))
      {
-          message("Data was not passed as a parameter, will use loading function...");
-          mainData <- loadPlotsData();
+          message("Data was not passed as a parameter, will use loading function...")
+          mainData <- loadPlotsData()
      }
      else
      {
-          message("Data was passed as a parameter, will use that...");
+          message("Data was passed as a parameter, will use that...")
      }
      
      message("Opening 'plot1.png' file...")

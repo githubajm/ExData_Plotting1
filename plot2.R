@@ -24,30 +24,30 @@ plot2 <- function(mainData = NULL)
      # if data wasn't passed in, then call the loader function
      if (is.null(mainData))
      {
-          message("Data was not passed as a parameter, will use loading function...");
-          mainData <- loadPlotsData();
+          message("Data was not passed as a parameter, will use loading function...")
+          mainData <- loadPlotsData()
      }
      else
      {
-          message("Data was passed as a parameter, will use that...");
+          message("Data was passed as a parameter, will use that...")
      }
      
-     message("Opening 'plot2.png' file...");
-     png("plot2.png");
+     message("Opening 'plot2.png' file...")
+     png("plot2.png")
      
-     message("Rendering data...");
+     message("Rendering data...")
      plot(mainData$newDateTime, 
           mainData$Global_active_power, 
           type = "l", 
           ylab = "Global Active Power (kilowatts)",
-          xlab = "");
+          xlab = "")
 
-     message("Closing file 'plot2.png'...");
-     dev.off();
+     message("Closing file 'plot2.png'...")
+     dev.off()
      
-     message("Operations complete!");
+     message("Operations complete!")
      
-     return(1);
+     return(1)
 }
 
 # ----------------------------------

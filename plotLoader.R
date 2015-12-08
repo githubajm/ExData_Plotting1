@@ -4,10 +4,9 @@
 # Project 1
 # ----------------------------------
 # Please see associated readme.MD for further explanation
-# on project specifications; that file was forked from the original github
+# on project specifications that file was forked from the original github
 # repository
 # ----------------------------------
-
 
 # ----------------------------------
 # This function will load the data from the .txt file and return a dataset
@@ -17,34 +16,38 @@
 # ----------------------------------
 loadPlotsData <- function()
 {
-     message("Reading data from 'household_power_consumption.txt'...");
-     fileData <- read.csv("household_power_consumption.txt", sep = ";", na.strings = "?");
+     # before doing anything, check that the input file is in the working directory
+     if (!file.exists("household_power_consumption.txt"))
+        stop("Could not find 'household_power_consumption.txt'")
      
-     message("Making a copy...");
-     workingData <- fileData;
+     message("Reading data from 'household_power_consumption.txt'...")
+     fileData <- read.csv("household_power_consumption.txt", sep = ";", na.strings = "?")
      
-     message("Converting date variable to a proper date type...");
-     workingData$Date <- as.Date(workingData$Date, "%d/%m/%Y");
+     message("Making a copy...")
+     workingData <- fileData
      
-     message("Converting time variable to a character type...");
-     workingData$Time <- as.character(workingData$Time);
+     message("Converting date variable to a proper date type...")
+     workingData$Date <- as.Date(workingData$Date, "%d/%m/%Y")
      
-     message("Combining date and time variables to produce proper DateTime type...");
-     newDateTime <- strptime(paste(workingData$Date, workingData$Time), "%Y-%m-%d %H:%M:%S");
+     message("Converting time variable to a character type...")
+     workingData$Time <- as.character(workingData$Time)
      
-     message("Add DateTime as new variable...");
-     workingData <- cbind(newDateTime, workingData);
+     message("Combining date and time variables to produce proper DateTime type...")
+     newDateTime <- strptime(paste(workingData$Date, workingData$Time), "%Y-%m-%d %H:%M:%S")
      
-     message("Remove all 'NA' rows...");
-     workingData <- na.omit(workingData);
+     message("Add DateTime as new variable...")
+     workingData <- cbind(newDateTime, workingData)
+     
+     message("Remove all 'NA' rows...")
+     workingData <- na.omit(workingData)
      
      message("Subset for dates inclusive of '2007-02-01' and '2007-02-02'...")
      usefulData <- subset(workingData, 
                           (workingData$Date >= "2007-02-01" 
-                           & workingData$Date <= "2007-02-02"));
+                           & workingData$Date <= "2007-02-02"))
      
-     message("Useful dataset succesfully produced!");
-     return(usefulData);
+     message("Useful dataset succesfully produced!")
+     return(usefulData)
 }
 
 # ----------------------------------
@@ -56,7 +59,7 @@ loadPlotsData <- function()
 # ----------------------------------
 runAllPlots <- function(mainData = NULL)
 {
-     message("This operation will run all the plot operations...");
+     message("** runAllPlots() will now run all four plot operations **")
      
      # check that all the needed plot script files exist
      # error if one does not
@@ -89,12 +92,12 @@ runAllPlots <- function(mainData = NULL)
      # if data wasn't passed in, then call the loader function
      if (is.null(mainData))
      {
-          message("Data was not passed as a parameter, will use loading function...");
-          mainData <- loadPlotsData();
+          message("Data was not passed as a parameter, will use loading function...")
+          mainData <- loadPlotsData()
      }
      else
      {
-          message("Data was passed as a parameter, will use that...");
+          message("Data was passed as a parameter, will use that...")
      }
 
      # run each of the plot operation sequentially
@@ -109,9 +112,9 @@ runAllPlots <- function(mainData = NULL)
      plot3(mainData)
      
      message("** Running plot4() **")
-     plot4(mainData);
+     plot4(mainData)
      
-     return(1);
+     return(1)
 }
 
 # ----------------------------------

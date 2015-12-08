@@ -24,18 +24,18 @@ plot4 <- function(mainData = NULL)
      # if data wasn't passed in, then call the loader function
      if (is.null(mainData))
      {
-          message("Data was not passed as a parameter, will use loading function...");
-          mainData <- loadPlotsData();
+          message("Data was not passed as a parameter, will use loading function...")
+          mainData <- loadPlotsData()
      }
      else
      {
-          message("Data was passed as a parameter, will use that...");
+          message("Data was passed as a parameter, will use that...")
      }
      
-     message("Opening 'plot4.png' file...");
-     png("plot4.png");
+     message("Opening 'plot4.png' file...")
+     png("plot4.png")
      
-     message("Rendering data...");
+     message("Rendering data...")
      
      # setup to have a 2x2 grid of plots
      par(mfrow = c(2, 2))
@@ -45,14 +45,14 @@ plot4 <- function(mainData = NULL)
           mainData$Global_active_power, 
           type = "l", 
           ylab = "Global Active Power",
-          xlab = "");
+          xlab = "")
      
      # plot 2
      plot(mainData$newDateTime,
           mainData$Voltage, 
           type = "l", 
           ylab = "Voltage", 
-          xlab = "datetime");
+          xlab = "datetime")
      
      # plot 3
      plot(mainData$newDateTime, 
@@ -60,13 +60,13 @@ plot4 <- function(mainData = NULL)
           col = "black",
           ylab = "Energy sub metering",
           xlab = "",
-          type = "l");
+          type = "l")
      lines(mainData$newDateTime,
            mainData$Sub_metering_2,
-           col = "red");
+           col = "red")
      lines(mainData$newDateTime,
            mainData$Sub_metering_3,
-           col = "blue");
+           col = "blue")
      legend("topright", 
             legend = c("Sub_metering_1",
                        "Sub_metering_2",
@@ -75,21 +75,21 @@ plot4 <- function(mainData = NULL)
             col = c("black",
                     "red", 
                     "blue"),
-            bty = "n");
+            bty = "n")
      
      # plot 4
      plot(mainData$newDateTime,
           mainData$Global_reactive_power, 
           type = "l", 
           ylab = "Global_reactive_power", 
-          xlab = "datetime");
+          xlab = "datetime")
      
-     message("Closing file 'plot4.png'...");
-     dev.off();
+     message("Closing file 'plot4.png'...")
+     dev.off()
      
-     message("Operations complete!");
+     message("Operations complete!")
      
-     return(1);
+     return(1)
 }
 
 # ----------------------------------
